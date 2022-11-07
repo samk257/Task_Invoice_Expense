@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-lg-12 margin-tb">
                 <div class="pull-left mb-2">
-                    <h2>Add Company</h2>
+                    <h2>Add Income or Expense</h2>
                 </div>
                 <div class="pull-right">
                     <a class="btn btn-primary" href="{{ route('tasks.index') }}"> Back</a>
@@ -31,6 +31,7 @@
                     <div class="form-group">
                         <strong>Type</strong>
                         <select name="type" class="form-control">
+                            <option value=""></option>
                             <option value="0">-</option>
                             <option value="1">+</option>
                         </select>
@@ -51,8 +52,8 @@
                 <div class="col-xs-12 col-sm-12 col-md-12">
                     <div class="form-group">
                         <strong>Value</strong>
-                        <input type="number" name="value" class="form-control" placeholder="Value">
-                        @error('value')
+                        <input type="number" name="number" class="form-control" placeholder="Value">
+                        @error('number')
                         <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
                         @enderror
                     </div>

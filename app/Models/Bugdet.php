@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Bugdet extends Model
 {
     use HasFactory;
+    protected $fillable = ['type', 'description', 'number'];
 }

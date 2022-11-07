@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bugdet;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -13,7 +14,12 @@ class TaskController extends Controller
      */
     public function index()
     {
-        return  view('Task.task');
+        $data=[
+            "incomes"=>Bugdet::where('type',"1" )->get(),
+            "expenses"=>Bugdet::where('type',"0" )->get(),
+        ];
+        // dd($data);
+        return  view('Task.task',$data);
     }
 
     /**
@@ -34,7 +40,15 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'type' => 'required',
+            'description' => 'required',
+            'number' => 'required',
+        ]);
+
+        Bugdet::create($request->post());
+
+        return redirect()->route('tasks.index')->with('success','Successfully');
     }
 
     /**

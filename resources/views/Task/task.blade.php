@@ -22,35 +22,60 @@
                 <p>{{ $message }}</p>
             </div>
         @endif
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>S.No</th>
-                    <th>Company Name</th>
-                    <th>Company Email</th>
-                    <th>Company Address</th>
-                    <th width="280px">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                {{-- @foreach ($companies as $company)
-                    <tr>
-                        <td>{{ $company->id }}</td>
-                        <td>{{ $company->name }}</td>
-                        <td>{{ $company->email }}</td>
-                        <td>{{ $company->address }}</td>
-                        <td>
-                            <form action="{{ route('companies.destroy',$company->id) }}" method="Post">
-                                <a class="btn btn-primary" href="{{ route('companies.edit',$company->id) }}">Edit</a>
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                            </form>
-                        </td>
-                    </tr>
-                @endforeach --}}
-            </tbody>
-        </table>
+        <div class="row">
+            <div class="col-sm-6">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Income</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($incomes as $income)
+                            <tr>
+                                <td>{{ $income->id }}</td>
+                                <td>{{ $income->description }}</td>
+                                <td>{{ $income->number }}</td>
+                                <td>
+                                    <form action="{{ route('tasks.destroy',$income->id) }}" method="Post">
+                                        <a class="btn btn-primary" href="{{ route('tasks.edit',$income->id) }}">Edit</a>
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-sm-6">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Expenses</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($expenses as $expense)
+                            <tr>
+                                <td>{{ $expense->id }}</td>
+                                <td>{{ $expense->description }}</td>
+                                <td>{{ $expense->number }}</td>
+                                <td>
+                                    <form action="{{ route('tasks.destroy',$expense->id) }}" method="Post">
+                                        <a class="btn btn-primary" href="{{ route('tasks.edit',$expense->id) }}">Edit</a>
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
         {{-- {!! $companies->links() !!} --}}
     </div>
 </body>
