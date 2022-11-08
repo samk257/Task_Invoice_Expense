@@ -17,9 +17,21 @@ class TaskController extends Controller
         $data=[
             "incomes"=>Bugdet::where('type',"1" )->get(),
             "expenses"=>Bugdet::where('type',"0" )->get(),
+            "totalbudget"=>Bugdet::sum('number'),
         ];
+        $totalbu=Bugdet::sum('number');
+        $incomestotal=Bugdet::where('type',"1" )->sum('number');
+        $expenstotal=Bugdet::where('type',"0" )->sum('number');
+
+
+
+        if ($totalbu != 0) {
+            $percent = round(($expenstotal * 100 / $totalbu),2) ;
+            } else {
+            $percent = 0;
+            }
         // dd($data);
-        return  view('Task.task',$data);
+        return  view('Task.task',["percent"=>$percent,"incomestotal"=>$incomestotal,"expenstotal"=>$expenstotal],$data);
     }
 
     /**
@@ -91,8 +103,9 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Bugdet $bugdet)
     {
-        //
+        $bugdet->delete();
+        return redirect()->route('tasks.index')->with('success','Deleted successfully');
     }
 }

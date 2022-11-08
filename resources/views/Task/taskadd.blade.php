@@ -3,8 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Add Company Form - Laravel 9 CRUD</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Budget</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -24,44 +24,39 @@
             {{ session('status') }}
         </div>
         @endif
-        <form action="{{ route('tasks.store') }}" method="POST" enctype="multipart/form-data">
+        <form class="row g-3" action="{{ route('tasks.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <div class="row">
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="form-group">
-                        <strong>Type</strong>
-                        <select name="type" class="form-control">
-                            <option value=""></option>
-                            <option value="0">-</option>
-                            <option value="1">+</option>
-                        </select>
-                        @error('type')
-                        <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                        @enderror
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="form-group">
-                        <strong>Description</strong>
-                        <input type="text" name="description" class="form-control" placeholder="Description">
-                        @error('description')
-                        <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                        @enderror
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-12 col-md-12">
-                    <div class="form-group">
-                        <strong>Value</strong>
-                        <input type="number" name="number" class="form-control" placeholder="Value">
-                        @error('number')
-                        <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                        @enderror
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-primary ml-3">Submit</button>
+            <div class="col-md-2">
+                <label for="typeinput" class="form-label">Type</label>
+                <select id="typeinput" name="type" class="form-select @error('type') is-invalid @enderror">
+                    <option selected>Choose...</option>
+                    <option value="0">-</option>
+                    <option value="1">+</option>
+                </select>
+                @error('type')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="col-md-5">
+                <label for="description" class="form-label">Description</label>
+                <input type="text" name="description" class="form-control @error('description') is-invalid @enderror" id="description">
+                @error('description')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="col-md-5">
+                <label for="value" class="form-label">Value</label>
+                <input type="number" name="number" class="form-control @error('number') is-invalid @enderror"  id="value">
+                @error('number')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Save</button>
             </div>
         </form>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

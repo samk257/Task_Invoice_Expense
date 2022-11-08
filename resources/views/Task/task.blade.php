@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Laravel 9 CRUD Tutorial Example</title>
+    <title>Budget</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" >
 </head>
 <body>
@@ -13,7 +13,38 @@
                     <h2>Budget of {{Carbon\Carbon::now()->format('M')}} - {{Carbon\Carbon::now()->format('Y')}}</h2>
                 </div>
                 <div class="pull-right mb-2">
-                    <a class="btn btn-success" href="{{ route('tasks.create') }}"> Create Company</a>
+                    <a class="btn btn-success" href="{{ route('tasks.create') }}"> Create</a>
+                </div>
+            </div>
+        </div>
+        <div class="row g-3">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="text-center">Tasks</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h5>Total</h5>
+                            <h6>{{ $totalbudget }}</h6>
+                            </div>
+                            <div class="col-sm-6">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Income</th>
+                                            <th scope="col">Expense</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <td>{{ $incomestotal }}</td>
+                                        <td>{{ $expenstotal }} - <span class="text-danger">{{ $percent }} %</span></td>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
