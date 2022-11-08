@@ -62,21 +62,26 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($incomes as $income)
                             <tr>
+                        @forelse ($incomes as $income)
+
                                 <td>{{ $income->id }}</td>
                                 <td>{{ $income->description }}</td>
                                 <td>{{ $income->number }}</td>
                                 <td>
+                                    {{-- <a class="btn btn-primary" href="{{ route('tasks.edit',$income->id) }}">Edit</a> --}}
                                     <form action="{{ route('tasks.destroy',$income->id) }}" method="Post">
-                                        <a class="btn btn-primary" href="{{ route('tasks.edit',$income->id) }}">Edit</a>
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger">Delete</button>
                                     </form>
                                 </td>
+                                @empty
+                                <td>No income</td>
+
+                            @endforelse
                             </tr>
-                        @endforeach
+
                     </tbody>
                 </table>
             </div>
@@ -88,8 +93,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($expenses as $expense)
-                            <tr>
+
+                        <tr>
+                            @forelse ($expenses as $expense)
                                 <td>{{ $expense->id }}</td>
                                 <td>{{ $expense->description }}</td>
                                 <td>{{ $expense->number }}</td>
@@ -101,8 +107,10 @@
                                         <button type="submit" class="btn btn-danger">Delete</button>
                                     </form>
                                 </td>
-                            </tr>
-                        @endforeach
+                                @empty
+                                    <td>No expense</td>
+                                @endforelse
+                        </tr>
                     </tbody>
                 </table>
             </div>

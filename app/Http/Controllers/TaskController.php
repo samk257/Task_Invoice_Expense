@@ -103,8 +103,9 @@ class TaskController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Bugdet $bugdet)
+    public function destroy($id)
     {
+        $bugdet=Bugdet::find($id);
         $bugdet->delete();
         return redirect()->route('tasks.index')->with('success','Deleted successfully');
     }
